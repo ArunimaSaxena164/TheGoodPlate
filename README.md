@@ -1,1 +1,2 @@
 # TheGoodPlate
+# MERN Stack Project
