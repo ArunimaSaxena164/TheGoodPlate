@@ -4,6 +4,7 @@ import "./Feature.css";
 const Feature = () => {
   return (
     <section className="feature-section text-light py-5">
+      <div className="feature-content">
       <div className="container">
         <h2 className="feature-heading text-center mb-5">Our Features</h2>
 
@@ -12,8 +13,7 @@ const Feature = () => {
           <div>
             <h4>Easy User Accounts</h4>
             <p>
-              Donors and volunteers can sign up quickly. One-time donor accounts
-              auto-expire after their food is delivered.
+              Donors and volunteers can sign up quickly. Easy and intuitive for new users.
             </p>
           </div>
         </div>
@@ -50,6 +50,7 @@ const Feature = () => {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
