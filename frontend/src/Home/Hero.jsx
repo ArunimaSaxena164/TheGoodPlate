@@ -1,8 +1,56 @@
-import React from 'react';
-function Hero() {
-    return ( 
-        <>Hero</>
-     );
-}
+import React from "react";
+import "./Hero.css";
+
+const Hero = () => {
+  return (
+    <section className="hero-section d-flex align-items-center justify-content-center text-center">
+      <div className="container">
+
+        {/* MAIN HEADING */}
+        <h1 className="hero-title mb-5">The Good Plate</h1>
+
+        <div className="row justify-content-center">
+          {/* Donor Card */}
+          <div className="col-md-5 mx-3 my-3">
+            <div className="card hero-card shadow-lg">
+              <div className="card-body">
+                <h3 className="card-title text-success">Be a Donor</h3>
+                <p className="card-text text-muted">
+                  Share your excess food and bring a smile to someone’s face.
+                  Join our community of kind donors making a real difference.
+                </p>
+                <a
+                  href="#donor"
+                  className="start-link text-decoration-none fw-bold"
+                >
+                  Start as a Donor →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Volunteer Card */}
+          <div className="col-md-5 mx-3 my-3">
+            <div className="card hero-card shadow-lg">
+              <div className="card-body">
+                <h3 className="card-title text-warning">Be a Volunteer</h3>
+                <p className="card-text text-muted">
+                  Help us collect, package, and deliver food to those in need.
+                  Your small effort can have a huge impact.
+                </p>
+                <a
+                  href="#volunteer"
+                  className="start-link text-decoration-none fw-bold"
+                >
+                  Start as a Volunteer →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Hero;

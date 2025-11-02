@@ -1,0 +1,68 @@
+.feature-section {
+  position: relative;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url("C:/Users/Hp/Desktop/TheGoodPlate/frontend/background-2.jpg")
+      no-repeat center center/cover;
+  background-attachment: fixed; 
+  color: white;
+  padding: 100px 0;
+  z-index: 1;
+}
+
+/* white mist overlay for subtle readability */
+.feature-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+/* ensures content stays above overlay */
+.feature-section .container {
+  position: relative;
+  z-index: 2;
+  padding-left: 39%; 
+}
+
+/* heading styling */
+.feature-heading {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  color: #ffb347;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* feature box spacing */
+.feature-item {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* icon styling */
+.feature-icon {
+  font-size: 2.2rem;
+  margin-right: 1rem;
+  color: #ffb347;
+}
+
+/* title + text styling */
+.feature-item h4 {
+  color: #fdfdfd;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+  color: #ddd;
+  margin-bottom: 0;
+}
