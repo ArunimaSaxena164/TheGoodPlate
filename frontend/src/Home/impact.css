@@ -1,0 +1,81 @@
+.impact-section {
+  position: relative;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url("C:/Users/Hp/Desktop/TheGoodPlate/frontend/background-2.jpg")
+      no-repeat center center/cover;
+  background-attachment: fixed;
+  color: white;
+  padding: 100px 0;
+  z-index: 1;
+}
+
+/* light overlay for contrast */
+.impact-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.impact-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* heading styling */
+.impact-heading {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  font-size: 3.5rem;
+  color: #ffb347;
+  margin-bottom: 1rem;
+}
+
+/* paragraph styling */
+.impact-description {
+  color: #f2f2f2;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+}
+.highlight-text {
+  color: #ffb347;
+  font-weight: 600;
+}
+/* impact box */
+.impact-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.impact-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* icons */
+.impact-icon {
+  font-size: 2.5rem;
+  color: #ffb347;
+  margin-bottom: 1rem;
+}
+
+.impact-box h3 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.impact-box p {
+  color: #ddd;
+  font-size: 1rem;
+}
