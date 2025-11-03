@@ -1,0 +1,63 @@
+.footer-section {
+  position: relative;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("C:/Users/Hp/Desktop/TheGoodPlate/frontend/background-2.jpg")
+      no-repeat center center/cover;
+  background-attachment: fixed;
+  color: white;
+  z-index: 1;
+}
+
+/* Overlay effect for subtle white mist */
+.footer-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+
+.footer-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #ffb347;
+}
+
+.footer-text {
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-link {
+  color: #ffb347;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+
+.social-link:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 15px;
+}
