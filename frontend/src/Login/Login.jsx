@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./Login.css"
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -38,8 +39,9 @@ function Login() {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "450px" }}>
-      <h2 className="text-center mb-4">Login</h2>
+     <div className="login-page">
+      <div className="login-box">
+      <h2>Login</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -87,6 +89,7 @@ function Login() {
           Sign up
         </a>
       </p>
+    </div>
     </div>
   );
 }

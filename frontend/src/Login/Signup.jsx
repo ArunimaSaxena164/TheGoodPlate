@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./Signup.css"
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -30,8 +31,9 @@ function Signup() {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "500px" }}>
-      <h2 className="text-center mb-4">Sign Up</h2>
+    <div className="signup-page">
+    <div className="signup-box">
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Full Name</label>
@@ -102,6 +104,7 @@ function Signup() {
           Log in
         </a>
       </p>
+      </div>
     </div>
   );
 }
