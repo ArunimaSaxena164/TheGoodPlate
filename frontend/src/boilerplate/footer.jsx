@@ -3,7 +3,7 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <Footer className="footer-section text-center text-white py-4">
+    <footer className="footer-section text-center text-white py-4">
       <div className="container">
         {/* Logo / Title */}
         <h3 className="footer-title mb-3">The Good Plate</h3>
@@ -34,7 +34,7 @@ const Footer = () => {
           © {new Date().getFullYear()} The Good Plate. All rights reserved.
         </p>
       </div>
-    </Footer>
+    </footer>
   );
 };
 
