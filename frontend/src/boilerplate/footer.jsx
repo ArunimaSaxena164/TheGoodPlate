@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 import React from "react";
 import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer-section text-center text-white py-4">
+    <Footer className="footer-section text-center text-white py-4">
       <div className="container">
         {/* Logo / Title */}
         <h3 className="footer-title mb-3">The Good Plate</h3>
@@ -35,16 +34,8 @@ const Footer = () => {
           © {new Date().getFullYear()} The Good Plate. All rights reserved.
         </p>
       </div>
-    </footer>
+    </Footer>
   );
 };
 
 export default Footer;
-=======
-import React from 'react';
-function Footer() {
-    return ( <>Footer</> );
-}
-
-export default Footer;
->>>>>>> 04bfc5a12595b86f762417fbb9aa9b63368987f8
