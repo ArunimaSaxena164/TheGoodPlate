@@ -1,12 +1,14 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
 // Subschema for each food item
 const foodItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  quantity: { type: String, required: true },
-  shelfLife: { type: String, required: true }, // e.g., "2 days", "6 hours"
+  quantity: { type: Number, required: true }, // numeric
+  unit: { type: String, required: true }, // e.g. kg, plates, packets
+  remainingQuantity: { type: Number, default:0 }, // auto same as quantity
+  shelfLife: { type: String, required: true }, // "2 days", "6 hours"
   description: { type: String },
-  expiresAt: { type: Date }, // will be computed automatically
+  expiresAt: { type: Date }, // auto calculated
 });
 
 // Main schema for the food listing
@@ -33,13 +35,17 @@ const listingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Automatically calculate expiresAt for each food item and overallExpiresAt
+// Automatically calculate expiresAt and set remainingQuantity
 listingSchema.pre("save", function (next) {
   const now = new Date();
   let latestExpiry = now;
 
   this.foodDetails.forEach((item) => {
-    // Convert shelfLife string like "2 days" or "6 hours" to milliseconds
+    // If remainingQuantity not set, initialize it
+    if (item.remainingQuantity === undefined)
+      item.remainingQuantity = item.quantity;
+
+    // Parse shelf life
     const match = item.shelfLife.match(/(\d+)\s*(day|hour|minute|days|hours|minutes)/i);
     if (match) {
       const amount = parseInt(match[1]);
@@ -59,7 +65,7 @@ listingSchema.pre("save", function (next) {
   next();
 });
 
-// TTL index for auto deletion
+// TTL index for auto deletion after expiry
 listingSchema.index({ overallExpiresAt: 1 }, { expireAfterSeconds: 0 });
 
-module.exports=mongoose.model("Listing", listingSchema);
+module.exports = mongoose.model("Listing", listingSchema);
