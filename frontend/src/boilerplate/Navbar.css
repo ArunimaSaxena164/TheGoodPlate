@@ -1,0 +1,117 @@
+ /* .stylenav {
+  background-color: #ffb347; 
+  padding: 0.5rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.fontnav {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff !important;
+  letter-spacing: 1px;
+}
+
+
+.nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 1.25rem;
+ 
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-link:hover {
+  color: #222 !important;
+  transform: scale(1.05);
+}
+
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.profile-icon .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  font-size: 1.3rem;
+}
+
+.profile-icon .nav-link:hover {
+  color: #222 !important;
+}  */
+
+.stylenav {
+  background-color: #ffb347;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Brand name */
+.fontnav {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #ffffff !important;
+  letter-spacing: 1px;
+}
+
+/* Navbar links */
+.nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 1.15rem;
+  margin: 0 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-link:hover {
+  color: #222 !important;
+  transform: scale(1.05);
+}
+
+/* Profile icon */
+.profile-icon .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  font-size: 1.3rem;
+}
+
+.profile-icon .nav-link:hover {
+  color: #222 !important;
+}
+
+/* Sticky navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Mobile adjustments */
+@media (max-width: 992px) {
+  .fontnav {
+    font-size: 1.3rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    margin: 8px 0;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .profile-icon {
+    margin-top: 5px;
+  }
+}
