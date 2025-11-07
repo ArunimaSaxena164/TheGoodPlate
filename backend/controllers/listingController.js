@@ -1,5 +1,6 @@
 const Listing = require("../models/Listing.js");
 const listingValidationSchema = require("../utils/listingValidators.js");
+const mongoose = require("mongoose");
 
 const createListing = async (req, res) => {
   try {
@@ -143,4 +144,70 @@ const getAllListings = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-module.exports = { createListing, getNearbyListings, getAllListings };
+const getListingById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid listing id" });
+    }
+
+    const now = new Date();
+
+    // Find listing and populate donor info (name, email, phone)
+    const listing = await Listing.findOne({
+      _id: id,
+      isActive: true,
+      overallExpiresAt: { $gt: now },
+    })
+      .populate("donor", "name email phone") 
+      .lean()
+      .exec();
+
+    if (!listing)
+      return res
+        .status(404)
+        .json({ message: "Listing not found or expired" });
+
+    // Compute active items
+    const activeItems = (listing.foodDetails || []).filter(
+      (it) => it.remainingQuantity > 0 && new Date(it.expiresAt) > now
+    );
+
+    // Build payload with donor info included
+    const payload = {
+      _id: listing._id,
+      address: listing.address,
+      coordinates: listing.coordinates,
+      location: listing.location,
+      donor: listing.donor, // this now includes name, email, phone
+      createdAt: listing.createdAt,
+      overallExpiresAt: listing.overallExpiresAt,
+      isActive: listing.isActive,
+      foodDetails: listing.foodDetails.map((it) => ({
+        _id: it._id,
+        name: it.name,
+        quantity: it.quantity,
+        remainingQuantity: it.remainingQuantity,
+        unit: it.unit,
+        shelfLife: it.shelfLife,
+        description: it.description,
+        expiresAt: it.expiresAt,
+      })),
+      activeItems,
+      itemsCount: activeItems.length,
+      soonestExpiry: activeItems.length
+        ? new Date(
+            Math.min(...activeItems.map((a) => new Date(a.expiresAt)))
+          )
+        : null,
+    };
+
+    return res.json(payload);
+  } catch (err) {
+    console.error("getListingById:", err);
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+
+module.exports = { createListing, getNearbyListings, getAllListings, getListingById };
