@@ -5,7 +5,7 @@ const foodItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
   quantity: { type: Number, required: true }, // numeric
   unit: { type: String, required: true }, // e.g. kg, plates, packets
-  remainingQuantity: { type: Number, default:0 }, // auto same as quantity
+  remainingQuantity: { type: Number }, // auto same as quantity
   shelfLife: { type: String, required: true }, // "2 days", "6 hours"
   description: { type: String },
   expiresAt: { type: Date }, // auto calculated
@@ -28,10 +28,15 @@ const listingSchema = new mongoose.Schema(
       type: [foodItemSchema],
       required: true,
     },
+    location: {
+      type: { type: String, enum: ["Point"], default: "Point" },
+      coordinates: { type: [Number], default: undefined }, // [lng, lat]
+    },
     createdAt: { type: Date, default: Date.now },
     overallExpiresAt: { type: Date },
     isActive: { type: Boolean, default: true },
   },
+
   { timestamps: true }
 );
 
@@ -46,15 +51,19 @@ listingSchema.pre("save", function (next) {
       item.remainingQuantity = item.quantity;
 
     // Parse shelf life
-    const match = item.shelfLife.match(/(\d+)\s*(day|hour|minute|days|hours|minutes)/i);
+    const match = item.shelfLife.match(
+      /(\d+)\s*(day|hour|minute|days|hours|minutes)/i
+    );
     if (match) {
       const amount = parseInt(match[1]);
       const unit = match[2].toLowerCase();
 
       let expiry = new Date(now);
       if (unit.startsWith("day")) expiry.setHours(now.getHours() + amount * 24);
-      else if (unit.startsWith("hour")) expiry.setHours(now.getHours() + amount);
-      else if (unit.startsWith("minute")) expiry.setMinutes(now.getMinutes() + amount);
+      else if (unit.startsWith("hour"))
+        expiry.setHours(now.getHours() + amount);
+      else if (unit.startsWith("minute"))
+        expiry.setMinutes(now.getMinutes() + amount);
 
       item.expiresAt = expiry;
       if (expiry > latestExpiry) latestExpiry = expiry;
@@ -62,10 +71,16 @@ listingSchema.pre("save", function (next) {
   });
 
   this.overallExpiresAt = latestExpiry;
+  if (!this.location || !Array.isArray(this.location.coordinates)) {
+    this.location = {
+      type: "Point",
+      coordinates: [this.coordinates.lng, this.coordinates.lat],
+    };
+  }
   next();
 });
 
 // TTL index for auto deletion after expiry
 listingSchema.index({ overallExpiresAt: 1 }, { expireAfterSeconds: 0 });
-
+listingSchema.index({ location: "2dsphere" });
 module.exports = mongoose.model("Listing", listingSchema);
