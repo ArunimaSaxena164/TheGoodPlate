@@ -93,9 +93,7 @@ export default function VolunteerNearby() {
           <Link to="/volunteer/all" className="btn btn-secondary btn-sm me-2">
             View All Listings
           </Link>
-          <Link to="/volunteer/nearby" className="btn btn-primary btn-sm">
-            View Nearby Listings
-          </Link>
+         
         </div>
         <h3>Nearby Food Listings</h3>
         <div className="d-flex align-items-center">
@@ -203,6 +201,9 @@ export default function VolunteerNearby() {
                     day: "2-digit",
                     month: "2-digit",
                     year: "2-digit",
+                     hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false,
                   })}
                 </div>
 

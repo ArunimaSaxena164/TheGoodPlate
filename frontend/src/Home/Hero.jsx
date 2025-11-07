@@ -20,7 +20,7 @@ const Hero = () => {
                   Join our community of kind donors making a real difference.
                 </p>
                 <a
-                  href="#donor"
+                  href="/donor/create-listing"
                   className="start-link text-decoration-none fw-bold"
                 >
                   Start as a Donor →
@@ -39,7 +39,7 @@ const Hero = () => {
                   Your small effort can have a huge impact.
                 </p>
                 <a
-                  href="#volunteer"
+                  href="/volunteer/nearby"
                   className="start-link text-decoration-none fw-bold"
                 >
                   Start as a Volunteer →

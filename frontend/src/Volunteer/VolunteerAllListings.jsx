@@ -28,7 +28,9 @@ export default function VolunteerAllListings() {
   return (
     <div className="container my-4">
       <h3 className="mb-3">All Active Listings</h3>
-
+<div className="mb-3"> <Link to="/volunteer/nearby" className="btn btn-primary btn-sm">
+            View Nearby Listings
+          </Link></div>
       {err && <div className="alert alert-danger">{err}</div>}
       {loading && <div>Loading...</div>}
       {!loading && listings.length === 0 && (
