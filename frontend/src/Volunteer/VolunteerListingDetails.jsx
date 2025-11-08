@@ -107,13 +107,26 @@ export default function VolunteerListingDetails() {
                     <tr
                       key={it._id}
                       className={
-                        unavailable ? "table-secondary text-muted" : ""
+                        unavailable
+                          ? "table-secondary text-muted position-relative"
+                          : ""
                       }
                     >
                       <td>
                         <strong>{it.name}</strong>
                         <div className="small text-muted">{it.description}</div>
+
+                        {/* ✅ Show “Expired” label below the name if expired */}
+                        {expired && (
+                          <span
+                            className="badge bg-danger mt-1"
+                            style={{ fontSize: "0.75rem" }}
+                          >
+                            Expired
+                          </span>
+                        )}
                       </td>
+
                       <td>{it.quantity}</td>
                       <td>{it.remainingQuantity}</td>
                       <td>{it.unit}</td>
@@ -148,24 +161,21 @@ export default function VolunteerListingDetails() {
                 </p>
                 <p>{listing.donor?.email || "Not available"}</p>
               </div>
-             
             </div>
-             
-            
           </div>
           <div>
-                <small className="text-muted">Coordinates:</small>{" "}
-                <code>
-                  {listing.coordinates?.lat ?? "-"},{" "}
-                  {listing.coordinates?.lng ?? "-"}
-                </code>
-              </div>
-              <Link
-              to={`/volunteer/listing/${listing._id}/select`}
-              className="btn btn-primary w-100 mt-3"
-            >
-              Select from this Listing
-            </Link>
+            <small className="text-muted">Coordinates:</small>{" "}
+            <code>
+              {listing.coordinates?.lat ?? "-"},{" "}
+              {listing.coordinates?.lng ?? "-"}
+            </code>
+          </div>
+          <Link
+            to={`/volunteer/listing/${listing._id}/select`}
+            className="btn btn-primary w-100 mt-3"
+          >
+            Select from this Listing
+          </Link>
         </div>
       </div>
     </div>
