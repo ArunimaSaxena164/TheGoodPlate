@@ -64,3 +64,10 @@
   color: #e65c00;
   text-decoration: underline;
 }
+.section-divider {
+  height: 2px;
+  background: linear-gradient(to right, #ffb347, #ffcc33); /* gradient option */
+  margin: 3rem 0;
+  border-radius: 1px;
+  z-index:5px;
+}

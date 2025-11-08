@@ -1,0 +1,7 @@
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, #ffb347, #ffcc33); /* gradient option */
+  margin: 0.01rem 0; 
+  border-radius: 1px;
+  z-index:5px;
+}

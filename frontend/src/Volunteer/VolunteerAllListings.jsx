@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './VolunteerAllListings.css'
+
 
 export default function VolunteerAllListings() {
   const [listings, setListings] = useState([]);
@@ -26,7 +28,8 @@ export default function VolunteerAllListings() {
   }, []);
 
   return (
-    <div className="container my-4">
+    <div className="listings-page">
+      <div className="listings-box container my-4">
       <h3 className="mb-3">All Active Listings</h3>
 <div className="mb-3"> <Link to="/volunteer/nearby" className="btn btn-primary btn-sm">
             View Nearby Listings
@@ -84,6 +87,7 @@ export default function VolunteerAllListings() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

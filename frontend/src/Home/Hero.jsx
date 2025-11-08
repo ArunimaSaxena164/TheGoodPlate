@@ -50,7 +50,8 @@ const Hero = () => {
         </div>
       </div>
        
-    
+    <div className="section-divider"></div>
+
     </section>
     
   );
