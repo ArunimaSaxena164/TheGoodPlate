@@ -10,7 +10,7 @@
 .listings-box {
   width: 100%;
   max-width: 1100px;
-  background: rgba(255, 255, 255, 0.1); /* subtle glass */
+  background: rgba(255, 255, 255, 0.01); /* subtle glass */
   backdrop-filter: blur(20px);
   border-radius: 12px;
   padding: 30px;

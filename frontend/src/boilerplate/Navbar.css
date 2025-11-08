@@ -7,11 +7,11 @@
 
 /* Brand name */
 .fontnav {
-   font-family: "Raleway", sans-serif;
+   font-family:"poppins";
 
   font-weight: 700;
   font-size: 1.6rem;
-  color: #ffff !important;
+  color: black !important;
   letter-spacing: 1px;
 }
 
@@ -22,7 +22,7 @@
   font-size: 1.2rem;
   margin: 0 10px;
   transition: color 0.3s ease, transform 0.3s ease;
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto";
 }
 
 .nav-link:hover {
