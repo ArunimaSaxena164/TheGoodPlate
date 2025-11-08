@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import './VolunteerNearby.css'
 
 export default function VolunteerNearby() {
   const [coords, setCoords] = useState(null);
@@ -87,7 +88,8 @@ export default function VolunteerNearby() {
   console.log("📍 Using coordinates:", coords);
 
   return (
-    <div className="container my-4">
+    <div className="listings-page">
+    <div className="listings-box container my-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div className="mb-3">
           <Link to="/volunteer/all" className="btn btn-secondary btn-sm me-2">
@@ -241,6 +243,7 @@ export default function VolunteerNearby() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

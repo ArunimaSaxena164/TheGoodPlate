@@ -16,7 +16,7 @@ const Hero = () => {
               <div className="card-body">
                 <h3 className="card-title text-success">Be a Donor</h3>
                 <p className="card-text text-muted">
-                  Share your excess food and bring a smile to someone’s face.
+                  Share your excess food.Spread smiles.
                   Join our community of kind donors making a real difference.
                 </p>
                 <a
@@ -49,7 +49,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
+       
+    <div className="section-divider"></div>
+
     </section>
+    
   );
 };
 
