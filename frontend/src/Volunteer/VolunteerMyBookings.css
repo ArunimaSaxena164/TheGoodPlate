@@ -77,6 +77,15 @@
   transition: all 0.3s ease;
   border-radius: 8px;
   padding: 6px 14px;
+  background-color: black;
+  color:#ffa726;
+ border: 0.5px solid #ffa726 !important;
+}
+.profile-box .btn-outline-primary:hover {
+  transform: scale(1.05);     
+  background-color: #ffa726;      /* make button slightly bigger */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* subtle shadow for pop */
+  color:black;
 }
 
 .profile-box .btn-outline-danger {
