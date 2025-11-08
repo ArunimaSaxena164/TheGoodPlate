@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
@@ -19,12 +20,12 @@ const Hero = () => {
                   Share your excess food.Spread smiles.
                   Join our community of kind donors making a real difference.
                 </p>
-                <a
-                  href="/donor/create-listing"
+                 <Link
+                  to="/donor/create-listing"
                   className="start-link text-decoration-none fw-bold"
                 >
                   Start as a Donor →
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -38,12 +39,12 @@ const Hero = () => {
                   Help us collect, package, and deliver food to those in need.
                   Your small effort can have a huge impact.
                 </p>
-                <a
-                  href="/volunteer/nearby"
+                 <Link
+                  to="/volunteer/nearby"
                   className="start-link text-decoration-none fw-bold"
                 >
                   Start as a Volunteer →
-                </a>
+                </Link>
               </div>
             </div>
           </div>

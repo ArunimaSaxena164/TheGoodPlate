@@ -8,6 +8,7 @@ export default function VolunteerSelectItems() {
   const [selectedItems, setSelectedItems] = useState({});
   const navigate = useNavigate();
 
+  // Fetch listing details
   useEffect(() => {
     const fetchListing = async () => {
       try {
@@ -26,16 +27,96 @@ export default function VolunteerSelectItems() {
   const handleQuantityChange = (itemId, value) => {
     setSelectedItems({
       ...selectedItems,
-      [itemId]: parseFloat(value),
+      [itemId]: parseFloat(value) || 0,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Selected:", selectedItems);
-    alert("Booking feature coming soon!");
-    navigate("/volunteer/nearby");
+  // Select full quantity for an item
+  const handleSelectFull = (itemId, qty) => {
+    setSelectedItems({
+      ...selectedItems,
+      [itemId]: qty,
+    });
   };
+
+  // Select full listing (all items)
+  const handleSelectAll = () => {
+    const allSelected = {};
+    listing.foodDetails.forEach((item) => {
+      if (item.remainingQuantity > 0 && new Date(item.expiresAt) > new Date()) {
+        allSelected[item._id] = item.remainingQuantity;
+      }
+    });
+    setSelectedItems(allSelected);
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const selected = Object.entries(selectedItems)
+  //     .filter(([_, qty]) => qty > 0)
+  //     .map(([itemId, quantity]) => ({ itemId, quantity }));
+
+  //   if (selected.length === 0) {
+  //     alert("Please select at least one item!");
+  //     return;
+  //   }
+
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const res = await axios.post(
+  //       "http://localhost:5000/api/bookings",
+  //       { listingId: id, items: selected },
+  //       { headers: { Authorization: `Bearer ${token}` } }
+  //     );
+
+  //     alert("Booking successful!");
+  //     console.log(res.data);
+  //     navigate("/volunteer/nearby");
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert(err.response?.data?.message || "Error creating booking");
+  //   }
+  // };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // 1️⃣ Collect selected items with positive quantity
+  const selected = Object.entries(selectedItems)
+    .filter(([_, qty]) => qty > 0)
+    .map(([itemId, quantity]) => ({ itemId, quantity: Number(quantity) }));
+
+  if (selected.length === 0) {
+    alert("Please select at least one item!");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You must be logged in to book items.");
+      navigate("/login", { state: { from: `/volunteer/listing/${id}/select` } });
+      return;
+    }
+
+    // 2️⃣ Send POST request to backend
+    const res = await axios.post(
+      "http://localhost:5000/api/bookings",
+      { listingId: id, items: selected },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    // 3️⃣ Notify and redirect
+    alert("Booking successful!");
+    console.log("Booking:", res.data.booking);
+
+    // Optional: redirect to My Bookings (we’ll add this page soon)
+    navigate("/profile/my-bookings");
+
+  } catch (err) {
+    console.error("Booking error:", err);
+    alert(err.response?.data?.message || "Error creating booking");
+  }
+};
 
   if (!listing) return <div className="container my-4">Loading...</div>;
 
@@ -44,34 +125,70 @@ export default function VolunteerSelectItems() {
       <h3 className="mb-3">Select from {listing.address}</h3>
 
       <form onSubmit={handleSubmit}>
-        {listing.foodDetails.map((item) => (
-          <div key={item._id} className="card mb-3 p-3">
-            <div className="d-flex justify-content-between align-items-center">
-              <div>
-                <strong>{item.name}</strong> <br />
-                <small className="text-muted">
-                  {item.remainingQuantity} {item.unit} available • expires{" "}
-                  {new Date(item.expiresAt).toLocaleString("en-GB")}
-                </small>
-              </div>
-              <input
-                type="number"
-                min="0"
-                max={item.remainingQuantity}
-                step="any"
-                className="form-control"
-                style={{ width: 120 }}
-                value={selectedItems[item._id] || ""}
-                onChange={(e) => handleQuantityChange(item._id, e.target.value)}
-                placeholder="Enter qty"
-              />
-            </div>
-          </div>
-        ))}
+        {listing.foodDetails.map((item) => {
+          const expired = new Date(item.expiresAt) <= new Date();
+          const unavailable = item.remainingQuantity <= 0 || expired;
 
-        <button type="submit" className="btn btn-primary w-100">
-          Confirm Selection
-        </button>
+          return (
+            <div
+              key={item._id}
+              className={`card mb-3 p-3 ${
+                unavailable ? "bg-light text-muted" : ""
+              }`}
+            >
+              <div className="d-flex justify-content-between align-items-center">
+                <div>
+                  <strong>{item.name}</strong> <br />
+                  <small className="text-muted">
+                    {item.remainingQuantity} {item.unit} available • expires{" "}
+                    {new Date(item.expiresAt).toLocaleDateString("en-GB")}{" "}
+                    {expired && <span className="text-danger fw-bold"> (Expired)</span>}
+                  </small>
+                </div>
+
+                <div className="d-flex align-items-center gap-2">
+                  <input
+                    type="number"
+                    min="0"
+                    max={item.remainingQuantity}
+                    step="any"
+                    className="form-control"
+                    style={{ width: 120 }}
+                    disabled={unavailable}
+                    value={selectedItems[item._id] || ""}
+                    onChange={(e) =>
+                      handleQuantityChange(item._id, e.target.value)
+                    }
+                    placeholder="Enter qty"
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary"
+                    disabled={unavailable}
+                    onClick={() =>
+                      handleSelectFull(item._id, item.remainingQuantity)
+                    }
+                  >
+                    Full
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        <div className="d-flex justify-content-between mt-3">
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={handleSelectAll}
+          >
+            Select Complete Listing
+          </button>
+          <button type="submit" className="btn btn-primary">
+            Confirm Selection
+          </button>
+        </div>
       </form>
     </div>
   );

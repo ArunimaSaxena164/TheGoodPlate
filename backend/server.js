@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const authRoutes=require("./routes/authRoutes.js");
 const listingRoutes=require("./routes/ListingRoute.js");
 const app = express();
+const bookingRoutes = require("./routes/bookingRoutes");
 
 
 
@@ -20,6 +21,7 @@ app.use(cors({
 // routes
 app.use("/api/auth",authRoutes);
 app.use("/api/listings", listingRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // basic health route
 app.get("/", (req, res) => res.send("TheGoodPlate API running"));
