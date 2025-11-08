@@ -33,7 +33,6 @@ export default function VolunteerSelectItems() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Selected:", selectedItems);
-    // 🔜 later we’ll send this to backend as a booking request
     alert("Booking feature coming soon!");
     navigate("/volunteer/nearby");
   };
