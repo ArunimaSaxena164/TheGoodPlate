@@ -36,7 +36,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255,0.1);
+ background: rgba(0, 0, 0, 0.2);
+
   z-index: 1;
 }
 
@@ -63,11 +64,4 @@
 .start-link:hover {
   color: #e65c00;
   text-decoration: underline;
-}
-.section-divider {
-  height: 2px;
-  background: linear-gradient(to right, #ffb347, #ffcc33); /* gradient option */
-  margin: 3rem 0;
-  border-radius: 1px;
-  z-index:5px;
 }

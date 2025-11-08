@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+import './VolunteerSelectItems.css'
 export default function VolunteerSelectItems() {
   const { id } = useParams(); // listing id
   const [listing, setListing] = useState(null);
@@ -50,33 +50,7 @@ export default function VolunteerSelectItems() {
     setSelectedItems(allSelected);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const selected = Object.entries(selectedItems)
-  //     .filter(([_, qty]) => qty > 0)
-  //     .map(([itemId, quantity]) => ({ itemId, quantity }));
-
-  //   if (selected.length === 0) {
-  //     alert("Please select at least one item!");
-  //     return;
-  //   }
-
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const res = await axios.post(
-  //       "http://localhost:5000/api/bookings",
-  //       { listingId: id, items: selected },
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-
-  //     alert("Booking successful!");
-  //     console.log(res.data);
-  //     navigate("/volunteer/nearby");
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert(err.response?.data?.message || "Error creating booking");
-  //   }
-  // };
+  
 const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -121,7 +95,8 @@ const handleSubmit = async (e) => {
   if (!listing) return <div className="container my-4">Loading...</div>;
 
   return (
-    <div className="container my-4">
+    <div className="listing-select-page">
+    <div className="listing-select-box container my-4">
       <h3 className="mb-3">Select from {listing.address}</h3>
 
       <form onSubmit={handleSubmit}>
@@ -190,6 +165,7 @@ const handleSubmit = async (e) => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 }
