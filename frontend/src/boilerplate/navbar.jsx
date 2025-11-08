@@ -63,7 +63,7 @@ function Navbar() {
               <>
                 <li className="nav-item">
                   <button
-                    className="btn btn-outline-danger btn-sm ms-2"
+                    className="btn btn-danger-reverse btn-sm ms-2"
                     onClick={handleLogout}
                   >
                     Logout
