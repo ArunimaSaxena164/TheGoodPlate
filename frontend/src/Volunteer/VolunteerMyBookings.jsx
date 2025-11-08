@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './VolunteerMyBookings.css'
 export default function VolunteerMyBookings() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -67,7 +68,8 @@ export default function VolunteerMyBookings() {
       : "-";
 
   return (
-    <div className="container my-4">
+    <div className="profile-page">
+    <div className=" profile-box container my-4">
       <h3 className="mb-3 text-center">My Profile</h3>
 
       {/* user Info Section */}
@@ -174,6 +176,7 @@ export default function VolunteerMyBookings() {
           </div>
         );
       })}
+    </div>
     </div>
   );
 }

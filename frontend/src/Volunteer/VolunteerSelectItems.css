@@ -1,0 +1,129 @@
+/* Full background section */
+.listing-select-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: url('../assets/background-2.jpg') no-repeat center center/cover;
+  background-attachment: fixed;
+  padding: 40px 20px;
+}
+
+/* Main content box */
+.listing-select-box {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(40px);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* Headings */
+.listing-select-box h3 {
+  color: #ffb347;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Cards (each item) */
+.listing-select-box .card {
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 12px;
+  color: #ffb347;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease;
+}
+
+.listing-select-box .card:hover {
+  background: rgba(0, 0, 0, 0.45);
+  transform: scale(1.01);
+}
+
+/* Unavailable/expired items */
+.listing-select-box .bg-light.text-muted {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  border: none;
+}
+
+/* Muted text */
+.listing-select-box .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight:600;
+}
+
+/* Input field */
+.listing-select-box .form-control {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffb347;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.listing-select-box .form-control:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffb347;
+  box-shadow: 0 0 5px #ffb347;
+  color: #ffb347;
+}
+
+/* Buttons */
+.listing-select-box .btn-primary {
+  background-color: #ffb347;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  transition: 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.listing-select-box .btn-primary:hover {
+  background-color: #ffa726;
+  transform: scale(1.02);
+}
+
+/* Outline button (secondary / select full) */
+.listing-select-box .btn-outline-secondary,
+.listing-select-box .btn-outline-primary {
+  border-color: #ffb347;
+  color: #ffb347;
+  transition: 0.3s ease;
+}
+
+.listing-select-box .btn-outline-secondary:hover,
+.listing-select-box .btn-outline-primary:hover {
+  background-color: #ffb347;
+  color: #000;
+  transform: scale(1.02);
+}
+
+/* Disabled buttons and inputs */
+.listing-select-box button:disabled,
+.listing-select-box .form-control:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Placeholder text color */
+.listing-select-box .form-control::placeholder {
+  color: rgba(255, 179, 71, 0.6);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .listing-select-box {
+    padding: 20px;
+  }
+
+  .listing-select-box h3 {
+    font-size: 1.25rem;
+  }
+}

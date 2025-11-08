@@ -1,0 +1,126 @@
+/* Outer background area */
+.listing-details-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: url('../assets/background-2.jpg') no-repeat center center/cover;
+  background-attachment: fixed;
+  padding: 40px 20px;
+}
+
+/* Main glass box */
+.listing-details-box {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* Headings */
+.listing-details-box h4,
+.listing-details-box h5,
+.listing-details-box h6 {
+  color: #ffb347;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card styling */
+.listing-details-box .card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Muted text */
+.listing-details-box .text-muted {
+  color:#ffa726 !important;
+}
+
+/* Table styling */
+.listing-details-box .table {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.listing-details-box .table thead {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.listing-details-box .table-bordered th,
+.listing-details-box .table-bordered td {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.listing-details-box .table-secondary {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Badges */
+.listing-details-box .badge.bg-danger {
+  background-color: #e57373 !important;
+  color: #fff;
+}
+
+/* Light background boxes (e.g., contact details) */
+.listing-details-box .bg-light {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+/* Buttons */
+.listing-details-box .btn-primary {
+  background-color: #ffb347;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  transition: 0.3s;
+  padding: 8px;
+}
+
+.listing-details-box .btn-primary:hover {
+  background-color: #ffa726;
+  transform: scale(1.02);
+}
+
+.listing-details-box .btn-outline-secondary {
+  border-color: #ffb347;
+  color: #ffb347;
+  transition: 0.3s;
+}
+
+.listing-details-box .btn-outline-secondary:hover {
+  background-color: #ffb347;
+  color: #000;
+  transform: scale(1.02);
+}
+
+/* Code element (coordinates) */
+.listing-details-box code {
+  color: #ffb347;
+}
+.listing-details-box .card-body {
+  background: rgba(0, 0, 0, 0.4); /* darker overlay */
+  border-radius: 12px;
+  padding: 25px;
+  transition: 0.3s ease;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .listing-details-box {
+    padding: 20px;
+  }
+  .listing-details-box .table {
+    font-size: 0.85rem;
+  }
+}

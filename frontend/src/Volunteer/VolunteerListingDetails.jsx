@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import './VolunteerListingDetails.css'
 
 export default function VolunteerListingDetails() {
   const { id } = useParams();
@@ -49,7 +50,8 @@ export default function VolunteerListingDetails() {
       : "-";
 
   return (
-    <div className="container my-4">
+    <div className="listing-details-page">
+    <div className=" listing-details-box container my-4">
       <div className="d-flex justify-content-between align-items-start mb-3">
         <div>
           <Link
@@ -178,6 +180,7 @@ export default function VolunteerListingDetails() {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }
