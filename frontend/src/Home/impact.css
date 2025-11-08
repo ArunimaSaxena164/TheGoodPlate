@@ -20,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-   background: rgba(0, 0, 0, 0.2);
+   background: rgba(255,255,255,0.1);
   z-index: 1;
 }
 
@@ -51,7 +51,7 @@
 }
 /* impact box */
 .impact-box {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0,0,0,0.4);
   border-radius: 15px;
   padding: 30px;
   transition: transform 0.3s ease, background 0.3s ease;

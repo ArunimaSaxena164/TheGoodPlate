@@ -145,7 +145,7 @@ export default function VolunteerNearby() {
       {manualMode && (
         <form
           onSubmit={handleManualSubmit}
-          className="border rounded p-3 bg-light mb-3"
+          className="rounded p-3 mb-3 dark-bg"
         >
           <div className="row">
             <div className="col-md-5 mb-2">

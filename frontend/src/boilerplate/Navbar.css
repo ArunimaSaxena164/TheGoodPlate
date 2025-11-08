@@ -49,8 +49,20 @@
   top: 0;
   z-index: 100;
 }
+.btn-danger-reverse {
+  background-color: #dc3545; /* Bootstrap danger red */
+  color: white;
+  border: 1px solid #dc3545;
+  transition: all 0.3s ease;
+}
 
-/* Mobile adjustments */
+.btn-danger-reverse:hover {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+
 /* Mobile adjustments */
 @media (max-width: 992px) {
   .fontnav {
