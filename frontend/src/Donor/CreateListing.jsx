@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './CreateListing.css'
 
 const CreateListing = () => {
   const [address, setAddress] = useState("");
@@ -62,9 +63,10 @@ const CreateListing = () => {
   };
 
   return (
-    <div className="container mt-4 mb-5">
-      <h2 className="text-center mb-4">Create Food Listing</h2>
-      <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm bg-light">
+    <div className="create-listing-page">
+    <div className="listing-box mt-4 mb-5">
+      <h2 className="text-center mb-4">List your food donation</h2>
+      <form onSubmit={handleSubmit} className="p-4 rounded shadow-sm ">
 
         {/* Address */}
         <div className="mb-3">
@@ -108,13 +110,12 @@ const CreateListing = () => {
         <h5 className="mt-3">Food Details</h5>
 
         {foodDetails.map((item, index) => (
-          <div key={index} className="border rounded p-3 mb-3 bg-white position-relative">
+          <div key={index} className=" p-3 mb-3 position-relative">
 
             {/* Remove / Delete button */}
             <button
               type="button"
-              className="btn-close position-absolute bg-white p-2 rounded-circle shadow-sm"
-             style={{ top: "50%", transform: "translateY(-50%)", right: "-30px" }}
+              className="btn-close position-absolute  p-2 rounded-circle shadow-sm"
               onClick={() => removeFoodItem(index)}
               disabled={foodDetails.length === 1}
             ></button>
@@ -203,6 +204,7 @@ const CreateListing = () => {
           Create Listing
         </button>
       </form>
+    </div>
     </div>
   );
 };

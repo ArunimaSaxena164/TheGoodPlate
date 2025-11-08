@@ -3,7 +3,7 @@ import './App.css';
 import Home from './Home/Home.jsx';
 import Login from './Login/Login.jsx';
 import Signup from './Login/Signup.jsx';
-import Navbar from "./boilerplate/Navbar.jsx";
+import Navbar from "./boilerplate/navbar.jsx";
 import Footer from "./boilerplate/Footer.jsx";
 import CreateListing from "./Donor/CreateListing.jsx";
 function App() {
