@@ -208,6 +208,40 @@ const getListingById = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+const getMyListings = async (req, res) => {
+  try {
+    const donorId = req.user.id;
 
+    const listings = await Listing.find({ donor: donorId })
+      .select("address overallExpiresAt isActive createdAt foodDetails")
+      .sort({ createdAt: -1 })
+      .lean();
 
-module.exports = { createListing, getNearbyListings, getAllListings, getListingById };
+    // compute remaining items count & soonest expiry
+    const now = new Date();
+    const formatted = listings.map((l) => {
+      const activeItems = (l.foodDetails || []).filter(
+        (it) => it.remainingQuantity > 0 && new Date(it.expiresAt) > now
+      );
+      return {
+        _id: l._id,
+        address: l.address,
+        createdAt: l.createdAt,
+        overallExpiresAt: l.overallExpiresAt,
+        isActive: l.isActive,
+        totalItems: l.foodDetails.length,
+        remainingItems: activeItems.length,
+        soonestExpiry: activeItems.length
+          ? new Date(Math.min(...activeItems.map((i) => new Date(i.expiresAt))))
+          : null,
+      };
+    });
+
+    res.json(formatted);
+  } catch (err) {
+    console.error("getMyListings:", err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = { createListing, getNearbyListings, getAllListings, getListingById ,getMyListings};

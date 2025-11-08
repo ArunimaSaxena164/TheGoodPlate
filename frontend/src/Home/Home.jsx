@@ -9,9 +9,7 @@ function Home() {
     return ( 
        <div>
         <Hero/>
-       <div className="section-divider"></div>
         <Feature/>
-       <div className="section-divider"></div>
         <Impact/>
         {/* <Footer/> */}
        </div>
