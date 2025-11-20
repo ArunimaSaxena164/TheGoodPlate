@@ -13,7 +13,7 @@ export default function VolunteerNearby() {
   const [manualLat, setManualLat] = useState("");
   const [manualLng, setManualLng] = useState("");
 
-  // ✅ Prevent overwriting manual coords
+  //  Prevent overwriting manual coords
   const manualOverride = useRef(false);
 
   // AUTO DETECTION (only runs if manualOverride is false)
@@ -85,7 +85,7 @@ export default function VolunteerNearby() {
     );
   };
 
-  console.log("📍 Using coordinates:", coords);
+  console.log(" Using coordinates:", coords);
 
   return (
     <div className="listings-page">
@@ -116,7 +116,6 @@ export default function VolunteerNearby() {
         </div>
       </div>
 
-      {/* 📍 Location controls */}
       <div className="mb-3">
         {!manualMode ? (
           <button
@@ -177,7 +176,6 @@ export default function VolunteerNearby() {
         </form>
       )}
 
-      {/* 🧾 Results */}
       {err && <div className="alert alert-danger">{err}</div>}
       {loading && <div>Loading...</div>}
 

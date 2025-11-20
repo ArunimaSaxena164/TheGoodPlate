@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import './VolunteerSelectItems.css'
+import {toast} from "react-toastify";
+import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
 export default function VolunteerSelectItems() {
   const { id } = useParams(); // listing id
   const [listing, setListing] = useState(null);
@@ -18,7 +20,7 @@ export default function VolunteerSelectItems() {
         });
         setListing(res.data);
       } catch (err) {
-        alert("Error fetching listing details");
+        toast.error("Error fetching listing details",toastErrorOptions);
       }
     };
     fetchListing();
@@ -54,7 +56,6 @@ export default function VolunteerSelectItems() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // 1️⃣ Collect selected items with positive quantity
   const selected = Object.entries(selectedItems)
     .filter(([_, qty]) => qty > 0)
     .map(([itemId, quantity]) => ({ itemId, quantity: Number(quantity) }));
@@ -67,20 +68,18 @@ const handleSubmit = async (e) => {
   try {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("You must be logged in to book items.");
+      toast.error("You must be logged in to book items.",toastErrorOptions);
       navigate("/login", { state: { from: `/volunteer/listing/${id}/select` } });
       return;
     }
 
-    // 2️⃣ Send POST request to backend
     const res = await axios.post(
       "http://localhost:5000/api/bookings",
       { listingId: id, items: selected },
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
-    // 3️⃣ Notify and redirect
-    alert("Booking successful!");
+    toast.success("Booking successful!",toastSuccessOptions);
     console.log("Booking:", res.data.booking);
 
     // Optional: redirect to My Bookings (we’ll add this page soon)
@@ -88,7 +87,7 @@ const handleSubmit = async (e) => {
 
   } catch (err) {
     console.error("Booking error:", err);
-    alert(err.response?.data?.message || "Error creating booking");
+    toast.error(err.response?.data?.message || "Error creating booking",toastErrorOptions);
   }
 };
 

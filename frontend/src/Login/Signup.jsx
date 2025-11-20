@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
+import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
 import "./Signup.css"
 
 function Signup() {
@@ -24,9 +26,11 @@ function Signup() {
     try {
       const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
       setMessage("Signup successful! You can now log in.");
+      toast.success("Signup successful! you can now log in",toastSuccessOptions);
       setFormData({ name: "", email: "", phone: "", password: "" });
     } catch (err) {
       setMessage(err.response?.data?.message || "Signup failed. Please try again.");
+      toast.error(err.response?.data?.message,toastErrorOptions);
     }
   };
 

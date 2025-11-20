@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
+import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
  import './CreateListing.css'
 
 const CreateListing = () => {
@@ -46,7 +48,7 @@ const CreateListing = () => {
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("Listing created successfully!");
+      toast.success("Listing created successfully!",toastSuccessOptions);  
       console.log(response.data);
 
       // clear form
@@ -58,7 +60,7 @@ const CreateListing = () => {
       ]);
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Error creating listing");
+      toast.error(error.response?.data?.message || "Error creating listing",toastErrorOptions);
     }
   };
 

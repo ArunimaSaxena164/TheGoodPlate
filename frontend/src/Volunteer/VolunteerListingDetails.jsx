@@ -118,7 +118,7 @@ export default function VolunteerListingDetails() {
                         <strong>{it.name}</strong>
                         <div className="small text-muted">{it.description}</div>
 
-                        {/* ✅ Show “Expired” label below the name if expired */}
+                        {/*  Show “Expired” label below the name if expired */}
                         {expired && (
                           <span
                             className="badge bg-danger mt-1"
