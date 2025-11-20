@@ -12,7 +12,7 @@ import VolunteerListingsDetails from "./Volunteer/VolunteerListingDetails.jsx";
 import VolunteerSelectItems from "./Volunteer/VolunteerSelectItems.jsx";
 import ProtectedRoute from "./protectedRoute.jsx";
 import VolunteerMyBookings from "./Volunteer/VolunteerMyBookings.jsx";
-
+import EditListing from "./Donor/EditListing.jsx";
 function App() {
   return (
     <>
@@ -71,6 +71,15 @@ function App() {
     </ProtectedRoute>
   }
 />
+<Route
+  path="/donor/edit-listing/:id"
+  element={
+    <ProtectedRoute>
+      <EditListing />
+    </ProtectedRoute>
+  }
+/>
+
 
       </Routes>
 
