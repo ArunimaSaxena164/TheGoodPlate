@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastSuccessOptions, toastErrorOptions } from "../toastUtils";
-
+import './EditListing.css'
 export default function EditListing() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -103,7 +103,8 @@ export default function EditListing() {
   if (loading || !listing) return <div>Loading...</div>;
 
   return (
-    <div className="container my-4">
+    <div className="edit-listing-page">
+    <div className="edit-listing-box container my-4">
       <h3>Edit Listing</h3>
 
       <form onSubmit={handleSubmit}>
@@ -157,16 +158,16 @@ export default function EditListing() {
         <h4>Food Items</h4>
 
         {listing.foodDetails.map((item, idx) => (
-          <div key={item._id || idx} className="card p-3 my-2 position-relative">
+          <div key={item._id || idx} className="card p-3 my-2 ">
             {listing.foodDetails.length > 1 && (
               <button
                 type="button"
-                className="btn btn-sm btn-link text-danger position-absolute"
-                style={{ top: "4px", right: "10px" }}
+                className="remove-item-btn"
                 onClick={() => removeFoodItem(idx)}
               >
-                ✖
+                X
               </button>
+
             )}
 
             <input
@@ -225,6 +226,7 @@ export default function EditListing() {
           Save Changes
         </button>
       </form>
+    </div>
     </div>
   );
 }

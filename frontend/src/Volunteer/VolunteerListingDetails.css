@@ -124,3 +124,36 @@
     font-size: 0.85rem;
   }
 }
+/* Edit Listing button (btn-warning override) */
+.listing-details-box .btn-warning {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border: none !important;
+  color: #ffb347 !important;
+  font-weight: 650;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.listing-details-box .btn-warning:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  color: #000 !important;
+  transform: scale(1.02);
+}
+
+/* Delete Listing button (btn-danger override) */
+.listing-details-box .btn-danger {
+  /* background: rgba(255, 0, 0, 0.25) !important; */
+  border: none !important;
+  color: #ff6b6b !important;
+  font-weight: 650;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  color: #fff !important;
+}
+
+.listing-details-box .btn-danger:hover {
+  background: rgba(255, 0, 0, 0.45) !important; 
+  transform: scale(1.02);
+}

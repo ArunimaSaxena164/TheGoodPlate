@@ -212,23 +212,23 @@ const handleDeleteConfirm = () => {
           >
             Select from this Listing
           </Link>
-        </div>
-        {listing.donor?._id === user?.id && (
-  <Link
-    to={`/donor/edit-listing/${listing._id}`}
-    className="btn btn-warning w-100 mt-2"
-  >
-    Edit Listing
-  </Link>
-)}
-{listing.donor?._id === user?.id && (
-  <button
-    className="btn btn-danger w-100 mt-2"
-    onClick={handleDeleteConfirm}
-  >
-    Delete Listing
-  </button>
-)}
+                    {listing.donor?._id === user?.id && (
+            <Link
+              to={`/donor/edit-listing/${listing._id}`}
+              className="btn btn-warning w-100 mt-2"
+            >
+              Edit Listing
+            </Link>
+          )}
+          {listing.donor?._id === user?.id && (
+            <button
+              className="btn btn-danger w-100 mt-2"
+              onClick={handleDeleteConfirm}
+            >
+              Delete Listing
+            </button>
+          )}
+        </div>      
 
 
       </div>

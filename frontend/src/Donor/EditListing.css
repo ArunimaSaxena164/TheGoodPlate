@@ -1,0 +1,148 @@
+/* Full background */
+.edit-listing-page {
+  min-height: 100vh;
+  background: url('../assets/background-2.jpg') no-repeat center center/cover;
+  background-attachment: fixed;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Main container glass box */
+.edit-listing-box {
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(25px);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  color: #fff;
+}
+
+/* Headings */
+.edit-listing-box h3,
+.edit-listing-box h4 {
+  color: #ffb347;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Labels */
+.edit-listing-box label {
+  color: #ffb347;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Form inputs */
+.edit-listing-box .form-control {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffb347;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+.edit-listing-box .form-control::placeholder {
+  color: rgba(255, 179, 71, 0.6);
+}
+
+.edit-listing-box .form-control:focus {
+  background: rgba(255, 255, 255, 0.20);
+  border-color: #ffb347;
+  color: #ffb347;
+  box-shadow: 0 0 6px #ffb347;
+}
+
+/* Cards for each food item */
+.edit-listing-box .card {
+  position: relative !important;
+  overflow: visible !important;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(15px);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: 0.3s ease;
+   padding: 2rem !important;
+}
+
+.edit-listing-box .card:hover {
+  background: rgba(0, 0, 0, 0.55);
+  transform: scale(1.01);
+}
+
+/* Delete (X) button
+.edit-listing-box .btn-link.text-danger {
+  color: #ff6961 !important;
+  font-weight: bold;
+}
+
+.edit-listing-box .btn-link.text-danger:hover {
+  color: #ff3b30 !important;
+  transform: scale(1.1);
+} */
+
+/* Add More Items button */
+.edit-listing-box .btn-secondary {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: #ffb347;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.edit-listing-box .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.35);
+  color: #000;
+}
+
+/* Primary button */
+.edit-listing-box .btn-primary {
+  background-color: #ffb347;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.edit-listing-box .btn-primary:hover {
+  background-color: #ffa726;
+  transform: scale(1.02);
+}
+
+/* Loading + error messages */
+.edit-listing-box .alert {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffb347;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 10px;
+}
+.remove-item-btn {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+
+  color: #ffb347;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 20;
+}
+
