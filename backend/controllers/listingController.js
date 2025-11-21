@@ -19,6 +19,92 @@ const createListing = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+const updateListing = async (req, res) => {
+  try {
+    const listingId = req.params.id;
+    const userId = req.user.id;
+
+    const existing = await Listing.findById(listingId);
+    if (!existing) return res.status(404).json({ message: "Listing not found" });
+
+    if (existing.donor.toString() !== userId)
+      return res.status(403).json({ message: "Not authorized" });
+
+    const updatedFoodDetails = req.body.foodDetails.map((incoming) => {
+      const old = existing.foodDetails.find(
+        (i) => i._id && i._id.toString() === incoming._id
+      );
+
+      if (old) {
+        // EXISTING ITEM
+        const oldQty = old.quantity;
+        const newQty = incoming.quantity;
+
+        let newRemaining;
+
+        if (newQty !== oldQty) {
+          // donor changed total quantity → reset
+          newRemaining = newQty;
+        } else {
+          // keep same remaining
+          newRemaining = old.remainingQuantity;
+        }
+
+        return {
+          ...old.toObject(),
+          name: incoming.name,
+          quantity: newQty,
+          unit: incoming.unit,
+          shelfLife: incoming.shelfLife,
+          description: incoming.description ?? old.description,
+          remainingQuantity: newRemaining,
+          // expiresAt recalculated in pre-save
+        };
+      }
+
+      // NEW ITEM
+      return {
+        name: incoming.name,
+        quantity: incoming.quantity,
+        unit: incoming.unit,
+        shelfLife: incoming.shelfLife,
+        description: incoming.description ?? "",
+        remainingQuantity: incoming.quantity,
+      };
+    });
+
+    existing.address = req.body.address;
+    existing.coordinates = req.body.coordinates;
+    existing.foodDetails = updatedFoodDetails;
+
+    await existing.save();
+
+    res.json({ message: "Listing updated", listing: existing });
+  } catch (err) {
+    console.error("updateListing error:", err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
+const deleteListing = async (req, res) => {
+  try {
+    const listingId = req.params.id;
+    const userId = req.user.id;
+
+    const listing = await Listing.findById(listingId);
+    if (!listing) return res.status(404).json({ message: "Listing not found" });
+
+    if (listing.donor.toString() !== userId)
+      return res.status(403).json({ message: "Not authorized" });
+
+    await listing.deleteOne();
+    res.json({ message: "Listing deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const getNearbyListings = async (req, res) => {
   try {
     const lat = parseFloat(req.query.lat);
@@ -90,15 +176,14 @@ const getNearbyListings = async (req, res) => {
           },
         },
       },
-      // sort by distance
+      
       { $sort: { distanceKm: 1 } },
-      // limit if you want top N (front-end can also paginate)
-      // { $limit: 10 }
+      
     ]);
 
     res.json(results);
   } catch (err) {
-    // Common cause: location/index missing on old docs
+    
     res.status(500).json({ message: err.message });
   }
 };
@@ -120,7 +205,7 @@ const getAllListings = async (req, res) => {
       .select("address coordinates foodDetails overallExpiresAt createdAt") // projection
       .lean();
 
-    // reduce payload & compute counts
+    
     const cleaned = listings.map((l) => {
       const activeItems = l.foodDetails.filter(
         (it) => it.remainingQuantity > 0 && it.expiresAt > now
@@ -153,7 +238,6 @@ const getListingById = async (req, res) => {
 
     const now = new Date();
 
-    // Find listing and populate donor info (name, email, phone)
     const listing = await Listing.findOne({
       _id: id,
       isActive: true,
@@ -244,4 +328,4 @@ const getMyListings = async (req, res) => {
   }
 };
 
-module.exports = { createListing, getNearbyListings, getAllListings, getListingById ,getMyListings};
+module.exports = { createListing, getNearbyListings, getAllListings, getListingById ,getMyListings,updateListing,deleteListing};

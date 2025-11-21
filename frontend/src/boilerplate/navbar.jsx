@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import {toast} from "react-toastify";
+import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
 import { useAuth } from "../context/authContext"; 
 import "./Navbar.css";
 
@@ -10,7 +12,8 @@ function Navbar() {
 
   const handleLogout = () => {
     logout(); // clear token + user from context & localStorage
-    navigate("/login"); // redirect to login page
+    navigate("/"); // redirect to login page
+    toast.success("Logged out successfully!",toastSuccessOptions);
   };
 
   return (

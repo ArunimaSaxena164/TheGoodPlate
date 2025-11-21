@@ -1,16 +1,13 @@
 const mongoose = require("mongoose");
-
-// Subschema for each food item
 const foodItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  quantity: { type: Number, required: true }, // numeric
-  unit: { type: String, required: true }, // e.g. kg, plates, packets
-  remainingQuantity: { type: Number }, // auto same as quantity
-  shelfLife: { type: String, required: true }, // "2 days", "6 hours"
+  quantity: { type: Number, required: true },
+  unit: { type: String, required: true },
+  remainingQuantity: { type: Number }, 
+  shelfLife: { type: String, required: true }, 
   description: { type: String },
-  expiresAt: { type: Date }, // auto calculated
+  expiresAt: { type: Date },
 });
-
 // Main schema for the food listing
 const listingSchema = new mongoose.Schema(
   {
@@ -39,44 +36,44 @@ const listingSchema = new mongoose.Schema(
 
   { timestamps: true }
 );
-
-// Automatically calculate expiresAt and set remainingQuantity
 listingSchema.pre("save", function (next) {
   const now = new Date();
   let latestExpiry = now;
 
   this.foodDetails.forEach((item) => {
-    // If remainingQuantity not set, initialize it
-    if (item.remainingQuantity === undefined)
+    if (item.remainingQuantity === undefined) {
       item.remainingQuantity = item.quantity;
+    }
 
-    // Parse shelf life
     const match = item.shelfLife.match(
       /(\d+)\s*(day|hour|minute|days|hours|minutes)/i
     );
+
     if (match) {
       const amount = parseInt(match[1]);
       const unit = match[2].toLowerCase();
 
       let expiry = new Date(now);
-      if (unit.startsWith("day")) expiry.setHours(now.getHours() + amount * 24);
+      if (unit.startsWith("day"))
+        expiry.setHours(now.getHours() + amount * 24);
       else if (unit.startsWith("hour"))
         expiry.setHours(now.getHours() + amount);
       else if (unit.startsWith("minute"))
         expiry.setMinutes(now.getMinutes() + amount);
 
       item.expiresAt = expiry;
+
       if (expiry > latestExpiry) latestExpiry = expiry;
     }
   });
 
   this.overallExpiresAt = latestExpiry;
-  if (!this.location || !Array.isArray(this.location.coordinates)) {
-    this.location = {
-      type: "Point",
-      coordinates: [this.coordinates.lng, this.coordinates.lat],
-    };
-  }
+
+  this.location = {
+    type: "Point",
+    coordinates: [this.coordinates.lng, this.coordinates.lat],
+  };
+
   next();
 });
 

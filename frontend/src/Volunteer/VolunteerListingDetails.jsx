@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './VolunteerListingDetails.css'
+import { useAuth } from "../context/authContext"; 
+import {toast} from "react-toastify";
+import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
+import Swal from "sweetalert2";
 
 export default function VolunteerListingDetails() {
   const { id } = useParams();
+  const {user} =useAuth();
   const navigate = useNavigate();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,6 +30,7 @@ export default function VolunteerListingDetails() {
         setListing(res.data);
       } catch (e) {
         setErr(e.response?.data?.message || "Unable to load listing");
+        toast.error(e.response?.data?.message||"Unable to load listing",toastErrorOptions);
       } finally {
         setLoading(false);
       }
@@ -48,6 +54,34 @@ export default function VolunteerListingDetails() {
           hour12: false,
         })
       : "-";
+const handleDeleteConfirm = () => {
+  Swal.fire({
+    title: "Delete this listing?",
+    text: "This action cannot be undone.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Delete",
+    cancelButtonText: "Cancel",
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#6c757d",
+  }).then(async (result) => {
+    if (!result.isConfirmed) return;
+
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.delete(
+        `http://localhost:5000/api/listings/${listing._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      toast.success("Listing deleted successfully!", toastSuccessOptions);
+      navigate("/volunteer/all"); // or /donor/my-listings if you prefer
+    } catch (err) {
+      toast.error("Failed to delete listing", toastErrorOptions);
+    }
+  });
+};
 
   return (
     <div className="listing-details-page">
@@ -118,7 +152,7 @@ export default function VolunteerListingDetails() {
                         <strong>{it.name}</strong>
                         <div className="small text-muted">{it.description}</div>
 
-                        {/* ✅ Show “Expired” label below the name if expired */}
+                        {/*  Show “Expired” label below the name if expired */}
                         {expired && (
                           <span
                             className="badge bg-danger mt-1"
@@ -179,6 +213,24 @@ export default function VolunteerListingDetails() {
             Select from this Listing
           </Link>
         </div>
+        {listing.donor?._id === user?.id && (
+  <Link
+    to={`/donor/edit-listing/${listing._id}`}
+    className="btn btn-warning w-100 mt-2"
+  >
+    Edit Listing
+  </Link>
+)}
+{listing.donor?._id === user?.id && (
+  <button
+    className="btn btn-danger w-100 mt-2"
+    onClick={handleDeleteConfirm}
+  >
+    Delete Listing
+  </button>
+)}
+
+
       </div>
     </div>
     </div>
