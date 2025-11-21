@@ -51,7 +51,8 @@ function App() {
           path="/volunteer/listing/:id"
           element={
             <ProtectedRoute>
-              <VolunteerListingsDetails />
+              <VolunteerListingsDetails /> 
+              {/* this */}
             </ProtectedRoute>
           }
         />
@@ -59,7 +60,8 @@ function App() {
           path="/volunteer/listing/:id/select"
           element={
             <ProtectedRoute>
-              <VolunteerSelectItems />
+              <VolunteerSelectItems />   
+              {/* this */}
             </ProtectedRoute>
           }
         />
