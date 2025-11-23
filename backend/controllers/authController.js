@@ -47,7 +47,7 @@ const signupUser = async (req, res) => {
   }
 };
 
-// 🟡 Login Controller
+// Login Controller
 const loginUser = async (req, res) => {
   try {
     const { email, phone, password } = req.body;
