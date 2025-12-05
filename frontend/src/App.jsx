@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./Home/Home.jsx";
 import Login from "./Login/Login.jsx";
 import Signup from "./Login/Signup.jsx";
-import Footer from "./boilerplate/Footer.jsx";
+import Footer from "./boilerplate/footer.jsx";
 import Navbar from "./boilerplate/navbar.jsx";
 import CreateListing from "./Donor/CreateListing.jsx";
 import VolunteerNearby from "./Volunteer/VolunteerNearby";
