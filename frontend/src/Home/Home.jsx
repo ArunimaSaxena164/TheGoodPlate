@@ -1,7 +1,7 @@
 import React from 'react';
 import Feature from './Feature';
 import Hero from './Hero';
-import Impact from './impact';
+import Impact from './Impact.jsx';
 import './Home.css';
 
 //import Footer from '../boilerplate/Footer.jsx'

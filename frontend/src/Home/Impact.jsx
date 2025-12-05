@@ -1,5 +1,5 @@
 import React from "react";
-import "./Impact.css";
+import "./impact.css";
 
 const Impact = () => {
   return (
