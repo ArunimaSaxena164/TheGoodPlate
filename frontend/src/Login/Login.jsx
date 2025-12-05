@@ -4,6 +4,7 @@ import { useAuth } from "../context/authContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import {toast} from "react-toastify";
 import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
+import { API_URL } from "../api";
 import "./Login.css";
 
 function Login() {
@@ -33,7 +34,7 @@ function Login() {
         ? { email: formData.emailOrPhone, password: formData.password }
         : { phone: formData.emailOrPhone, password: formData.password };
 
-      const res = await axios.post("http://localhost:5000/api/auth/login", payload);
+      const res = await axios.post(`${API_URL}/api/auth/login`, payload);
 
       // Use AuthContext login (saves user + token globally)
       login(res.data.user, res.data.token);

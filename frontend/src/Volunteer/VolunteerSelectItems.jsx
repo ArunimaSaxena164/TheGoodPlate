@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import './VolunteerSelectItems.css'
 import {toast} from "react-toastify";
 import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
+import { API_URL } from "../api";
+
 export default function VolunteerSelectItems() {
   const { id } = useParams(); // listing id
   const [listing, setListing] = useState(null);
@@ -15,7 +17,7 @@ export default function VolunteerSelectItems() {
     const fetchListing = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:5000/api/listings/${id}`, {
+        const res = await axios.get(`${API_URL}/api/listings/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setListing(res.data);
@@ -74,7 +76,7 @@ const handleSubmit = async (e) => {
     }
 
     const res = await axios.post(
-      "http://localhost:5000/api/bookings",
+      `${API_URL}/api/bookings`,
       { listingId: id, items: selected },
       { headers: { Authorization: `Bearer ${token}` } }
     );

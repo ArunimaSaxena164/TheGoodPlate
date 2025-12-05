@@ -5,6 +5,7 @@ import './VolunteerListingDetails.css'
 import { useAuth } from "../context/authContext"; 
 import {toast} from "react-toastify";
 import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
+import { API_URL } from "../api";
 import Swal from "sweetalert2";
 
 export default function VolunteerListingDetails() {
@@ -22,7 +23,7 @@ export default function VolunteerListingDetails() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5000/api/listings/${id}`,
+          `${API_URL}/api/listings/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -71,7 +72,7 @@ const handleDeleteConfirm = () => {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/api/listings/${listing._id}`,
+        `${API_URL}/api/listings/${listing._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

@@ -4,6 +4,7 @@ import "./VolunteerMyBookings.css";
 import {toast} from "react-toastify";
 import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
 import MyContributions from "./MyContributions.jsx";
+import { API_URL } from "../api.js";
 
 export default function VolunteerMyBookings() {
   const [bookings, setBookings] = useState([]);
@@ -21,7 +22,7 @@ export default function VolunteerMyBookings() {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/bookings/my-bookings", {
+        const res = await axios.get(`${API_URL}/api/bookings/my-bookings`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBookings(res.data);
@@ -39,7 +40,7 @@ export default function VolunteerMyBookings() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:5000/api/bookings/status",
+        `${API_URL}/api/bookings/status`,
         { bookingId, status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
+import { API_URL } from "../api";
 import "./Signup.css"
 
 function Signup() {
@@ -24,7 +25,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
+      const res = await axios.post(`${API_URL}/api/auth/signup`, formData);
       setMessage("Signup successful! You can now log in.");
       toast.success("Signup successful! you can now log in",toastSuccessOptions);
       setFormData({ name: "", email: "", phone: "", password: "" });

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import './VolunteerNearby.css'
+import { API_URL } from "../api";
 
 export default function VolunteerNearby() {
   const [coords, setCoords] = useState(null);
@@ -42,7 +43,7 @@ export default function VolunteerNearby() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:5000/api/listings/near?lat=${coords.lat}&lng=${coords.lng}&radius=${radiusKm}`,
+          `${API_URL}/api/listings/near?lat=${coords.lat}&lng=${coords.lng}&radius=${radiusKm}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setListings(res.data);

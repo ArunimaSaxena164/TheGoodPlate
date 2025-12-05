@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../api";
 import { Link } from "react-router-dom";
 
 export default function MyContributions() {
@@ -13,7 +14,7 @@ export default function MyContributions() {
       setErr("");
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/listings/my-listings", {
+        const res = await axios.get(`${API_URL}/api/listings/my-listings`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setListings(res.data);

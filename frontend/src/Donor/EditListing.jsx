@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { toastSuccessOptions, toastErrorOptions } from "../toastUtils";
+import { API_URL } from "../api";
 import './EditListing.css'
 export default function EditListing() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export default function EditListing() {
     const fetchListing = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:5000/api/listings/${id}`, {
+        const res = await axios.get(`${API_URL}/api/listings/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -88,7 +89,7 @@ export default function EditListing() {
         foodDetails: listing.foodDetails,
       };
 
-      await axios.put(`http://localhost:5000/api/listings/${id}`, payload, {
+      await axios.put(`${API_URL}/api/listings/${id}`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 import { toastSuccessOptions,toastErrorOptions } from "../toastUtils";
+import { API_URL } from "../api";
  import './CreateListing.css'
 
 const CreateListing = () => {
@@ -40,7 +41,7 @@ const CreateListing = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/listings",
+        `${API_URL}/api/listings`,
         {
           address,
           coordinates: { lat: parseFloat(lat), lng: parseFloat(lng) },
