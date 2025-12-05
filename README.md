@@ -7,7 +7,7 @@ A MERN web app that connects food donors with volunteers to reduce food waste.
 TheGoodPlate enables donors to share surplus food and volunteers to discover available food listings nearby. The system handles real-time food availability, expiry tracking, partial item selection, and automatic removal of expired listings.
 
 ## 🚀 Live Demo
-- Application: [the-good-plate.vercel.app/](https://the-good-plate.vercel.app/)
+- Application: [the-good-plate.vercel.app](https://the-good-plate.vercel.app/)
 - Video Walkthrough (2 min 40 sec): [Watch on YouTube](https://www.youtube.com/watch?v=1b5ANbL8FjA)
 
 ## 🚀 Features
