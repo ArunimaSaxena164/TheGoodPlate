@@ -8,7 +8,7 @@ TheGoodPlate enables donors to share surplus food and volunteers to discover ava
 
 ## 🚀 Live Demo
 - Application: [the-good-plate.vercel.app](https://the-good-plate.vercel.app/)
-- Video Walkthrough (2 min 40 sec): [Watch on YouTube](https://www.youtube.com/watch?v=1b5ANbL8FjA)
+- Video Walkthrough (2 min 20 sec): [Watch on YouTube](https://www.youtube.com/watch?v=1b5ANbL8FjA)
 
 ## 🚀 Features
 
