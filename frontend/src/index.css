@@ -1,0 +1,9 @@
+/* GLOBAL RESET + PREVENT GREY FLASH */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: black !important;      /* permanent fix */
+  background-color: black !important;
+  overflow-x: hidden;
+}

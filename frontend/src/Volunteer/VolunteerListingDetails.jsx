@@ -39,10 +39,31 @@ export default function VolunteerListingDetails() {
     fetchListing();
   }, [id]);
 
-  if (loading) return <div className="container my-4">Loading...</div>;
+  if (loading) return (
+  <div className="listing-details-page">
+    <div className="container my-4" style={{background:"rgba(0,0,0,0.4)", color:"white"}}>
+      Loading...
+    </div>
+  </div>
+);
+
   if (err)
-    return <div className="container my-4 alert alert-danger">{err}</div>;
-  if (!listing) return <div className="container my-4">Listing not found</div>;
+    return (
+  <div className="listing-details-page">
+    <div className="container my-4 alert alert-danger" style={{background: "rgba(0,0,0,0.4)", color:"white", border:"none"}}>
+      {err}
+    </div>
+  </div>
+);
+
+  if (!listing) return (
+  <div className="listing-details-page">
+    <div className="container my-4" style={{background:"rgba(0,0,0,0.4)", color:"white"}}>
+      Listing not found
+    </div>
+  </div>
+);
+
 
   const formatDateTime = (iso) =>
     iso
