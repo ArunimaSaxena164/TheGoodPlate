@@ -14,7 +14,7 @@ import ProtectedRoute from "./protectedRoute.jsx";
 import VolunteerMyBookings from "./Volunteer/VolunteerMyBookings.jsx";
 import EditListing from "./Donor/EditListing.jsx";
 
-import bgImage from "./assets/bg.jpg";   // <-- ADD THIS
+import bgImage from "./assets/background-2.jpg";   // <-- ADD THIS
 
 function App() {
   return (
